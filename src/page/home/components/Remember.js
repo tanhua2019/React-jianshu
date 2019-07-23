@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Remembers, RememberItem } from '../style'
 import { connect } from 'react-redux'
 
-class Remember extends Component {
+class Remember extends PureComponent {
   render() {
     const { list } = this.props;
     return (
@@ -20,10 +20,10 @@ class Remember extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  list: state.getIn(['home','RememberList'])
+  list: state.getIn(['home','recommendList'])
 })
 
-const mapDispathToProps = (dispath) => ({
+const mapDispatchToProps = (dispatch) => ({
 
 })
-export default connect(mapStateToProps,mapDispathToProps)(Remember);
+export default connect(mapStateToProps,mapDispatchToProps)(Remember);

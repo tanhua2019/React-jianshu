@@ -96,3 +96,27 @@ export const WriterWrapper = styled.div`
   text-align: center;
   border: 1px solid #ccc;
 `;
+
+export const LoadMore = styled.div`
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background: #a5a5a5;
+  text-align: center;
+  border-radius: 20px;
+  margin: 20px 0;
+  cursor: pointer;
+`;
+
+export const BackTop = styled.div`
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+`;

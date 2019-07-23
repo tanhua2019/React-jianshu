@@ -32,7 +32,7 @@ export const handChange = (page) => ({
 
 
 export const getList = () => {
-  return (dispath) => {
+  return (dispatch) => {
     // console.log('123');
     axios.get('/api/headerList.json').then(res => {
       // const action = {
@@ -40,7 +40,7 @@ export const getList = () => {
       //   data: res.data
       // }
       const data = res.data
-      dispath(changeList(data.data))
+      dispatch(changeList(data.data))
     }).catch(err => {
       console.log(err);
     })

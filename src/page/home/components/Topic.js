@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { TopicWrapper, TopicItem } from '../style'
 import { connect } from 'react-redux'
 
-class Topic extends Component {
+class Topic extends PureComponent {
   render() {
     const { list } = this.props
     return (
@@ -24,8 +24,8 @@ const mapStateToProps = (state) => ({
   list: state.getIn(['home', 'topicList'])
 })
 
-const mapDispathToProps = (dispath) => ({
+const mapDispatchToProps = (dispatch) => ({
 
 })
 
-export default connect(mapStateToProps, mapDispathToProps)(Topic);
+export default connect(mapStateToProps, mapDispatchToProps)(Topic);

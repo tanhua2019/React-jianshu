@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { Link } from 'react-router-dom'
 
 import { HeaderWrapper, Logo, Nav, Navitem, Input, Addition, Button, Search, SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchInfoItem } from './style'
 
 
-class Header extends Component {
+class Header extends PureComponent {
 
   getListArea() {
     const { focused, list, page, handleMouseEnter, handleMouseLeave, mouseIn, handleChange, totalPage } = this.props;
@@ -26,8 +27,8 @@ class Header extends Component {
           <SearchInfoTitle>
             热门搜索
             <SearchInfoSwitch onClick={() => handleChange(page, totalPage, this.spinIcon)}>
-                <i ref={ (icon) => {this.spinIcon = icon}} className='iconfont spin'>&#xe612;</i>
-                换一换
+              <i ref={(icon) => { this.spinIcon = icon }} className='iconfont spin'>&#xe612;</i>
+              换一换
             </SearchInfoSwitch>
           </SearchInfoTitle>
           {
@@ -47,7 +48,9 @@ class Header extends Component {
     const { focused, handleInputFocus, handleInputBlur, list } = this.props
     return (
       <HeaderWrapper>
-        <Logo></Logo>
+        <Link to='/'>
+          <Logo></Logo>
+        </Link>
         <Nav>
           <Navitem className='left active'>首页</Navitem>
           <Navitem className='left'>下载APP</Navitem>
@@ -60,7 +63,7 @@ class Header extends Component {
               classNames="slide">
               <Input
                 className={focused ? 'focused' : ''}
-                onFocus={() => {handleInputFocus(list)}}
+                onFocus={() => { handleInputFocus(list) }}
                 onBlur={handleInputBlur}></Input>
             </CSSTransition>
             <i className={focused ? 'iconfont focused zoom ' : 'iconfont zoom'}>&#xe629;</i>
@@ -113,52 +116,52 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispathToProps = (dispath) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     handleInputFocus(list) {
       // console.log(list);
       // if (list.size === 0) {
-      //   dispath(actionCreators.getList())
+      //   dispatch(actionCreators.getList())
       // }
-      (list.size === 0) && dispath(actionCreators.getList())
-      
+      (list.size === 0) && dispatch(actionCreators.getList())
+
       // console.log('122');
       // const action = {
       //   type: 'search_focus'
       // }
-      dispath(actionCreators.searchFocus())
+      dispatch(actionCreators.searchFocus())
     },
     handleInputBlur() {
       // const action = {
       //   type: 'search_blur'
       // }
-      dispath(actionCreators.searchBlur())
+      dispatch(actionCreators.searchBlur())
     },
     handleMouseEnter() {
-      dispath(actionCreators.mouseEnter())
+      dispatch(actionCreators.mouseEnter())
     },
     handleMouseLeave() {
-      dispath(actionCreators.mouseLeave())
+      dispatch(actionCreators.mouseLeave())
     },
-    handleChange(page, totalPage,spin) {
-      let originAngle = spin.style.transform.replace(/[^0-9]/ig,'');
-      if(originAngle) {
+    handleChange(page, totalPage, spin) {
+      let originAngle = spin.style.transform.replace(/[^0-9]/ig, '');
+      if (originAngle) {
         originAngle = parseInt(originAngle, 10);
       } else {
         originAngle = 0;
       }
-      spin.style.transform = 'rotate('+ (originAngle + 360)+'deg)'
+      spin.style.transform = 'rotate(' + (originAngle + 360) + 'deg)'
       // console.log(spin,'www');
       // spin.style.transform= 'rotate(360deg)'
       // console.log(page, totalPage);
       if (page < totalPage - 1) {
-        dispath(actionCreators.handChange(page + 1))
+        dispatch(actionCreators.handChange(page + 1))
       } else {
-        dispath(actionCreators.handChange(0))
+        dispatch(actionCreators.handChange(0))
       }
-      // dispath(actionCreators.handChange())
+      // dispatch(actionCreators.handChange())
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

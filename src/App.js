@@ -13,8 +13,8 @@ function App() {
     <div>
       <GlobalStyled />
       <Provider store={store}>
-        <Header></Header>
         <BrowserRouter>
+          <Header></Header>
           <Route path='/' exact component={Home} ></Route>
           <Route path='/detail' exact component={Detail}></Route>
         </BrowserRouter>
